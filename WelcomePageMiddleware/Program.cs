@@ -1,11 +1,24 @@
+using System.Runtime.CompilerServices;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddProblemDetails();
+
+
 var app = builder.Build();
 
-app.UseWelcomePage("/");
-app.UseDeveloperExceptionPage();
-app.UseStaticFiles();
-app.UseRouting();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler();
+}
 
-app.MapGet("/", () => "Welcome page");
+app.UseStatusCodePages();
+//app.UseWelcomePage("/");
+//app.UseDeveloperExceptionPage();
+//app.UseStaticFiles();
+//app.UseRouting();
+
+//app.MapGet("/", () => "Welcome page");
+//app.MapGet("/", void () => throw new Exception());
+app.MapGet("/", () => Results.NotFound());
 
 app.Run();
