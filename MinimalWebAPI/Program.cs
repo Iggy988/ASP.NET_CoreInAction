@@ -50,30 +50,30 @@ class ValidationHelper
 {
             internal static EndpointFilterDelegate ValidateIdFactory(EndpointFilterFactoryContext context, EndpointFilterDelegate next)
             {
-            ParameterInfo[] parameters = context.MethodInfo.GetParameters(); 
-            int? idPosition = null; 
-            for (int i = 0; i < parameters.Length; i++) 
-            { 
-                        if (parameters[i].Name == "id" && parameters[i].ParameterType == typeof(string)) 
+                        ParameterInfo[] parameters = context.MethodInfo.GetParameters(); 
+                        int? idPosition = null; 
+                        for (int i = 0; i < parameters.Length; i++) 
                         { 
-                                    idPosition = i; 
-                                    break; 
+                                    if (parameters[i].Name == "id" && parameters[i].ParameterType == typeof(string)) 
+                                    { 
+                                                idPosition = i; 
+                                                break; 
+                                    } 
                         } 
-            } 
-            if (!idPosition.HasValue) 
-            { 
-                        return next; 
-            } 
-            return async (invocationContext) => 
-            {
-                        var id = invocationContext.GetArgument<string>(idPosition.Value); 
-                        if (string.IsNullOrEmpty(id) || !id.StartsWith('f')) 
+                        if (!idPosition.HasValue) 
                         { 
-                                    return Results.ValidationProblem( new Dictionary<string, string[]> 
+                                    return next; 
+                        } 
+                        return async (invocationContext) => 
+                        {
+                                    var id = invocationContext.GetArgument<string>(idPosition.Value); 
+                                    if (string.IsNullOrEmpty(id) || !id.StartsWith('f')) 
+                                    { 
+                                                return Results.ValidationProblem( new Dictionary<string, string[]> 
                                     {{ "id", new[] { "Id must start with 'f'" }}}); 
-                        } 
+                                    } 
                         return await next(invocationContext); 
-            };
+                        };
             }
 }
 
