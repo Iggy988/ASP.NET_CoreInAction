@@ -12,12 +12,18 @@ app.MapGet("/fruit/{id}", /*getFruit*/ (string id) =>
             _fruit.TryGetValue(id, out var fruit) ? TypedResults.Ok(fruit) : Results.Problem(statusCode: 404));
 
 app.MapPost("/fruit/{id}", /*Handlers.AddFruit*/ (string id, Fruit fruit) =>
-            _fruit.TryAdd(id, fruit) 
-                ? TypedResults.Created($"/fruit/{id}", fruit) 
-                : Results.ValidationProblem(new Dictionary<string, string[]> 
-                { 
-                    {"id", new[] {"A fruit with this id already exists"}} 
-                }));
+{
+            if (string.IsNullOrEmpty(id) || !id.StartsWith('f')) 
+            {
+                        return Results.ValidationProblem(new Dictionary<string, string[]>
+                        {
+                        {"id", new[] {"Invalid format. Id must start with 'f'"}}
+                        });
+            }
+            return _fruit.TryGetValue(id, out var fruit)
+                        ? TypedResults.Ok(fruit)
+                        : Results.Problem(statusCode: 404);
+});
 
 //Handlers handlers = new Handlers();
 app.MapPut("/fruit/{id}", /*handlers.ReplaceFruit*/ (string id, Fruit fruit) =>
