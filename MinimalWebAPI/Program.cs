@@ -9,21 +9,16 @@ app.MapGet("/fruit", () => /*Fruit.All*/ _fruit);
 
 //var getFruit = (string id) => Fruit.All[id];
 app.MapGet("/fruit/{id}", /*getFruit*/ (string id) => 
-            _fruit.TryGetValue(id, out var fruit) ? TypedResults.Ok(fruit) : Results.Problem(statusCode: 404));
+            _fruit.TryGetValue(id, out var fruit) ? TypedResults.Ok(fruit) : Results.Problem(statusCode: 404))
+                        .AddEndpointFilter(ValidationHelper.ValidateId);
 
 app.MapPost("/fruit/{id}", /*Handlers.AddFruit*/ (string id, Fruit fruit) =>
-{
-            if (string.IsNullOrEmpty(id) || !id.StartsWith('f')) 
-            {
-                        return Results.ValidationProblem(new Dictionary<string, string[]>
-                        {
-                        {"id", new[] {"Invalid format. Id must start with 'f'"}}
-                        });
-            }
-            return _fruit.TryGetValue(id, out var fruit)
-                        ? TypedResults.Ok(fruit)
-                        : Results.Problem(statusCode: 404);
-});
+            _fruit.TryAdd(id, fruit)
+                        ? TypedResults.Created($"/fruit/{id}", fruit)
+                        : Results.ValidationProblem(new Dictionary<string, string[]> 
+                                    { 
+                                                {"id", new[] {"A fruit with this id already exists"}} 
+                                    }));
 
 //Handlers handlers = new Handlers();
 app.MapPut("/fruit/{id}", /*handlers.ReplaceFruit*/ (string id, Fruit fruit) =>
@@ -40,6 +35,23 @@ app.MapDelete("/fruit/{id}", /*handlers.DeleteFruit*/ (string id) =>
 
 
 app.Run();
+
+class ValidationHelper
+{
+            internal static async ValueTask<object?> ValidateId( EndpointFilterInvocationContext context, EndpointFilterDelegate next) #D
+            {
+                        var id = context.GetArgument<string>(0); 
+                        if (string.IsNullOrEmpty(id) || !id.StartsWith('f'))
+                        {
+                                    return Results.ValidationProblem(
+                                                new Dictionary<string, string[]>
+                                                {
+                                                            {"id", new[]{"Invalid format. Id must start with 'f'"}}
+                                                });
+                        }
+                        return await next(context); 
+            }
+}
 
 
 record Fruit(string Name, int Stock)
