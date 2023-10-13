@@ -1,46 +1,39 @@
 using System.Collections.Concurrent;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var _fruit = new ConcurrentDictionary<string, Fruit>(); 
+var _fruit = new ConcurrentDictionary<string, Fruit>();
 
-app.MapGet("/fruit", () => /*Fruit.All*/ _fruit);
+RouteGroupBuilder fruitApi = app.MapGroup("/fruit");
 
-//var getFruit = (string id) => Fruit.All[id];
-app.MapGet("/fruit/{id}", /*getFruit*/ (string id) =>
+fruitApi.MapGet("/", () =>  _fruit);
+
+RouteGroupBuilder fruitApiWithValidation = fruitApi.MapGroup("/").AddEndpointFilterFactory(ValidationHelper.ValidateIdFactory);
+
+fruitApiWithValidation.MapGet("/{id}",  (string id) =>
     _fruit.TryGetValue(id, out var fruit) ? TypedResults.Ok(fruit) : Results.Problem(statusCode: 404))
-            //.AddEndpointFilterFactory(ValidationHelper.ValidateIdFactory);
             .AddEndpointFilter<IdValidationFilter>();
-            //.AddEndpointFilter(ValidationHelper.ValidateId)
-            //.AddEndpointFilter(async(context, next) =>
-            //{
-                //           app.Logger.LogInformation("Executing filter...");
-                //           object? result = await next(context);
-                //           app.Logger.LogInformation($"Handler result: {result}");
-                //           return result;
-            // });
 
 
-app.MapPost("/fruit/{id}", /*Handlers.AddFruit*/ (string id, Fruit fruit) =>
+
+fruitApiWithValidation.MapPost("/{id}", /*Handlers.AddFruit*/ (string id, Fruit fruit) =>
     _fruit.TryAdd(id, fruit)
                 ? TypedResults.Created($"/fruit/{id}", fruit)
-                : Results.ValidationProblem(new Dictionary<string, string[]> 
-                            { 
-                                        {"id", new[] {"A fruit with this id already exists"}} 
-                            }))         
-    .AddEndpointFilterFactory(ValidationHelper.ValidateIdFactory);
+                : Results.ValidationProblem(new Dictionary<string, string[]>
+                            {
+                                        {"id", new[] {"A fruit with this id already exists"}}
+                            }));         
 
 //Handlers handlers = new Handlers();
-app.MapPut("/fruit/{id}", /*handlers.ReplaceFruit*/ (string id, Fruit fruit) =>
+fruitApiWithValidation.MapPut("/{id}", (string id, Fruit fruit) =>
 {
     _fruit[id] = fruit;
     return Results.NoContent();
 });
 
-app.MapDelete("/fruit/{id}", /*handlers.DeleteFruit*/ (string id) => 
+fruitApiWithValidation.MapDelete("/fruit/{id}", /*handlers.DeleteFruit*/ (string id) => 
 {
     _fruit.TryRemove(id, out _);
     return Results.NoContent();
@@ -49,18 +42,18 @@ app.MapDelete("/fruit/{id}", /*handlers.DeleteFruit*/ (string id) =>
 
 app.Run();
 
-class IdValidationFilter : IEndpointFilter
+class IdValidationFilter : IEndpointFilter 
 {
-    public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+    public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) 
     {
         var id = context.GetArgument<string>(0);
         if (string.IsNullOrEmpty(id) || !id.StartsWith('f'))
         {
             return Results.ValidationProblem(
-                new Dictionary<string, string[]>
-                {
-                    { "id", new[]{ "Invalid format. Id must start with 'f'."} }
-                });
+            new Dictionary<string, string[]>
+            {
+                {"id", new[]{"Invalid format. Id must start with 'f'"}}
+            });
         }
         return await next(context);
     }
