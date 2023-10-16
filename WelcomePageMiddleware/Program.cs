@@ -11,6 +11,8 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler();
 }
 
+app.MapHealthChecks("/healthz");
+
 app.UseStatusCodePages();
 //app.UseWelcomePage("/");
 //app.UseDeveloperExceptionPage();

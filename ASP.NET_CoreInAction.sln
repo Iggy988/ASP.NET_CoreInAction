@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalWebAPI", "MinimalWebAPI\MinimalWebAPI.csproj", "{F70D28AA-066E-4F34-9DB9-80F50322B7ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalWebAPI", "MinimalWebAPI\MinimalWebAPI.csproj", "{F70D28AA-066E-4F34-9DB9-80F50322B7ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WelcomePageMiddleware", "WelcomePageMiddleware\WelcomePageMiddleware.csproj", "{F04C5FAC-975A-4581-8897-9E82902B7288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WelcomePageMiddleware", "WelcomePageMiddleware\WelcomePageMiddleware.csproj", "{F04C5FAC-975A-4581-8897-9E82902B7288}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelBindingAndValidation", "ModelBindingAndValidation\ModelBindingAndValidation.csproj", "{28C59814-0FF3-4DAC-B962-C1632D597A9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F04C5FAC-975A-4581-8897-9E82902B7288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F04C5FAC-975A-4581-8897-9E82902B7288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F04C5FAC-975A-4581-8897-9E82902B7288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28C59814-0FF3-4DAC-B962-C1632D597A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C59814-0FF3-4DAC-B962-C1632D597A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C59814-0FF3-4DAC-B962-C1632D597A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C59814-0FF3-4DAC-B962-C1632D597A9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
