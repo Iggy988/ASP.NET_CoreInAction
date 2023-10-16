@@ -2,9 +2,27 @@ using System.Collections.Concurrent;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<RouteOptions>(o =>
+{
+    o.LowercaseUrls = true;
+    o.AppendTrailingSLash = true;
+    o.LowercaseQueryStrings = false;
+});
+
+app.MapGet("/HealthCheck", () => Results.Ok()).WithName("healthcheck");
+app.MapGet("/{name}", (string name) => name).WithName("product");
+app.MapGet("/", (LinkGenerator links) => new []
+{
+    links.GetPathByName("healthcheck"), 
+    links.GetPathByName("product", new { Name = "Big-Widget", Q = "Test"}) 
+});
+
 var app = builder.Build();
 
 var _fruit = new ConcurrentDictionary<string, Fruit>();
+
+app.MapGet("/MyRoute", () => "Hello world!").WithName("route1");
+LinkGenerator.GetPathByName("route1") returns /MyRoute
 
 RouteGroupBuilder fruitApi = app.MapGroup("/fruit");
 
@@ -39,6 +57,8 @@ fruitApiWithValidation.MapDelete("/fruit/{id}", /*handlers.DeleteFruit*/ (string
     return Results.NoContent();
 });
 
+app.MapGet("/test", () => "Hello world!").WithName("hello"); 
+app.MapGet("/redirect-me",() => Results.RedirectToRoute("hello"));
 
 app.Run();
 
