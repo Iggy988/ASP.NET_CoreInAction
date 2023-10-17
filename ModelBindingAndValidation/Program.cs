@@ -8,7 +8,7 @@ app.MapGet("/product/{id}", (ProductId) => $"Recived {id}");
 app.Run();
 
 
-readonly record struct ProductId(int id)
+readonly record struct ProductId(int id, string Name, int Stock)
 {
   public static bool TryParse(string? s, out ProductId result)
   {
