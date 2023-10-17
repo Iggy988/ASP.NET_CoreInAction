@@ -1,4 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.ConfigureRouteHandlerJsonOptions(opt => {
+  opt.SerializerOptions.AllowTrailingCommas = true;
+  opt.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+  opt.SerializerOptions.PropertyNameCaseInsensitive = true;
+});
+
 var app = builder.Build();
 
 //app.MapGet("/products/{id}/paged", ([FromRoute] int id, [FromQuery] int page, [FromHeader(Name="")] int pageSize) => $"Recived id {id}, page{page}, pageSize {pageSize}");
