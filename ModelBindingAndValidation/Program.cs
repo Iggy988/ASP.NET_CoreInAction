@@ -19,6 +19,14 @@ app.MapGet("/stock", StockWithDefaultValue);
 
 //app.MapGet("/products/search", ([FromQuery(Name = "id")] int[] id) => $"Received {id.Length} ids");
 
+
+app.MapGet("/links", ([FromServices]LinkGenerator links) => 
+{
+  string link = links.GetPathByName("products");
+  return $"View the product at {link}";
+});
+
+
 app.Run();
 
 
