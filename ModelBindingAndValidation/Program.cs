@@ -12,6 +12,8 @@ var app = builder.Build();
 
 app.MapGet("/product/{id}", (ProductId) => $"Recived {id}");
 
+app.MapGet("/products/search", ([FromQuery(Name = "id")] int[] id) => $"Received {id.Length} ids");
+
 app.Run();
 
 
