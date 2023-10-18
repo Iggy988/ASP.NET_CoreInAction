@@ -9,10 +9,13 @@ builder.Services.ConfigureRouteHandlerJsonOptions(opt => {
 var app = builder.Build();
 
 //app.MapGet("/products/{id}/paged", ([FromRoute] int id, [FromQuery] int page, [FromHeader(Name="")] int pageSize) => $"Recived id {id}, page{page}, pageSize {pageSize}");
+//app.MapGet("/product/{id}", (ProductId) => $"Recived {id}");
 
-app.MapGet("/product/{id}", (ProductId) => $"Recived {id}");
+app.MapGet("/stock/{id?}", (int? id) => $"Received {id}"); 
+app.MapGet("/stock2", (int? id) => $"Received {id}"); 
+app.MapPost("/stock", (Product? product) => $"Received {product}");
 
-app.MapGet("/products/search", ([FromQuery(Name = "id")] int[] id) => $"Received {id.Length} ids");
+//app.MapGet("/products/search", ([FromQuery(Name = "id")] int[] id) => $"Received {id.Length} ids");
 
 app.Run();
 
