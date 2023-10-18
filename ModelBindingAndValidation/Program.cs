@@ -26,9 +26,22 @@ app.MapGet("/links", ([FromServices]LinkGenerator links) =>
   return $"View the product at {link}";
 });
 
+app.MapGet("/upload", (IFormFileCollection files) =>
+{
+  foreach (IFormFile file in files)
+  {
+  }
+});
 
 app.Run();
 
+public interface IFormFile
+{
+  string ContentType { get; }
+  long Length { get; }
+  string FileName { get; }
+  Stream OpenReadStream();
+}
 
 string StockWithDefaultValue(int id = 0) => $"Received {id}";
 
