@@ -15,10 +15,14 @@ app.MapGet("/stock/{id?}", (int? id) => $"Received {id}");
 app.MapGet("/stock2", (int? id) => $"Received {id}"); 
 app.MapPost("/stock", (Product? product) => $"Received {product}");
 
+app.MapGet("/stock", StockWithDefaultValue);
+
 //app.MapGet("/products/search", ([FromQuery(Name = "id")] int[] id) => $"Received {id.Length} ids");
 
 app.Run();
 
+
+string StockWithDefaultValue(int id = 0) => $"Received {id}";
 
 readonly record struct ProductId(int id, string Name, int Stock)
 {
