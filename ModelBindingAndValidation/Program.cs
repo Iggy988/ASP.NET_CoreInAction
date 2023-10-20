@@ -52,7 +52,7 @@ app.Run();
 struct GetUserModel
 {
   [Range(1, 10)]  
-  Public int Id { get; set; }  
+  public int Id { get; set; }  
 }
 
 public record CreateUserModel : IValidatableObject
@@ -65,7 +65,7 @@ public record CreateUserModel : IValidatableObject
   {
     if(string.IsNullOrEmpty(Email)&& string.IsNullOrEmpty(PhoneNumber)) 
     {
-      yield return new ValidationResult("You must provide an Email or a PhoneNumber", New[] { nameof(Email), nameof(PhoneNumber) }); 
+      yield return new ValidationResult("You must provide an Email or a PhoneNumber", new[] { nameof(Email), nameof(PhoneNumber) }); 
     }
   }
 }
