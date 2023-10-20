@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using System.ComponentModel.DataAnnotations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,21 @@ app.MapGet("/category/{id}",([AsParameters] SearchModel model) => $"Received {mo
 app.MapPost("/users", (UserModel user) => user.ToString());
 
 app.Run();
+
+public record CreateUserModel : IValidatableObject
+{
+  [EmailAddress] 
+  public string Email { get; set; }
+  [Phone] 
+  public string PhoneNumber { get; set; }
+  public IEnumerable<ValidationResult> Validate( ValidationContext validationContext) 
+  {
+    if(string.IsNullOrEmpty(Email)&& string.IsNullOrEmpty(PhoneNumber)) 
+    {
+      yield return new ValidationResult("You must provide an Email or a PhoneNumber", New[] { nameof(Email), nameof(PhoneNumber) }); 
+    }
+  }
+}
 
 public record UserModel
 {
