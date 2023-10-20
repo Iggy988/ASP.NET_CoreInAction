@@ -43,7 +43,7 @@ app.MapPost("/sizes", (SizeDetails size) => $"Received {size}");
 app.MapGet("/category/{id}",([AsParameters] SearchModel model) => $"Received {model}");
 
 //Validation
-app.MapPost("/users", (UserModel user) => user.ToString());
+app.MapPost("/users", (UserModel user) => user.ToString()).WithParameterValidation();;
 
 app.Run();
 
