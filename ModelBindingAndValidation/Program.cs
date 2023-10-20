@@ -45,7 +45,15 @@ app.MapGet("/category/{id}",([AsParameters] SearchModel model) => $"Received {mo
 //Validation
 app.MapPost("/users", (UserModel user) => user.ToString()).WithParameterValidation();;
 
+app.MapPost("/user/{id}",([AsParameters] GetUserModel model) => $"Received {model.Id}").WithParameterValidation();
+
 app.Run();
+
+struct GetUserModel
+{
+  [Range(1, 10)]  
+  Public int Id { get; set; }  
+}
 
 public record CreateUserModel : IValidatableObject
 {
