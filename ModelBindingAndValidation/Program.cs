@@ -39,7 +39,17 @@ string StockWithDefaultValue(int id = 0) => $"Received {id}";
 
 app.MapPost("/sizes", (SizeDetails size) => $"Received {size}");
 
+app.MapGet("/category/{id}",([AsParameters] SearchModel model) => $"Received {model}");
+
+
 app.Run();
+
+record struct SearchModel(
+  int id, 
+  int page, 
+  [FromHeader(Name = "sort")] bool? sortAsc, 
+  [FromQuery(Name = "q")] string search
+);
 
 public record SizeDetails(double height, double width) 
 {
