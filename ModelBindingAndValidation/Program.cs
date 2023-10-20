@@ -41,8 +41,28 @@ app.MapPost("/sizes", (SizeDetails size) => $"Received {size}");
 
 app.MapGet("/category/{id}",([AsParameters] SearchModel model) => $"Received {model}");
 
+//Validation
+app.MapPost("/users", (UserModel user) => user.ToString());
 
 app.Run();
+
+public record UserModel
+{
+  [Required] 
+  [StringLength(100)] 
+  [Display(Name = "Your name")] 
+  public string FirstName { get; set; }
+  [Required]
+  [StringLength(100)]
+  [Display(Name = "Last name")]
+  public string LastName { get; set; }
+  [Required]
+  [EmailAddress] 
+  public string Email { get; set; }
+  [Phone] 
+  [Display(Name = "Phone number")]
+  public string PhoneNumber { get; set; }
+}
 
 record struct SearchModel(
   int id, 
