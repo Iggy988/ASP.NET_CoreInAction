@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalWebAPI", "MinimalWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WelcomePageMiddleware", "WelcomePageMiddleware\WelcomePageMiddleware.csproj", "{F04C5FAC-975A-4581-8897-9E82902B7288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelBindingAndValidation", "ModelBindingAndValidation\ModelBindingAndValidation.csproj", "{28C59814-0FF3-4DAC-B962-C1632D597A9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelBindingAndValidation", "ModelBindingAndValidation\ModelBindingAndValidation.csproj", "{28C59814-0FF3-4DAC-B962-C1632D597A9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Section 1", "Section 1", "{3176879C-4B69-4103-BC93-DB70E2BC113A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Section 2", "Section 2", "{34A0564F-3D9A-409F-965B-776917D2D9AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjectionExample", "DependencyInjectionExample\DependencyInjectionExample.csproj", "{7E8DE05A-AE21-46DE-846E-F6C1C6249CF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +33,19 @@ Global
 		{28C59814-0FF3-4DAC-B962-C1632D597A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28C59814-0FF3-4DAC-B962-C1632D597A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28C59814-0FF3-4DAC-B962-C1632D597A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8DE05A-AE21-46DE-846E-F6C1C6249CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8DE05A-AE21-46DE-846E-F6C1C6249CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8DE05A-AE21-46DE-846E-F6C1C6249CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8DE05A-AE21-46DE-846E-F6C1C6249CF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F70D28AA-066E-4F34-9DB9-80F50322B7ED} = {3176879C-4B69-4103-BC93-DB70E2BC113A}
+		{F04C5FAC-975A-4581-8897-9E82902B7288} = {3176879C-4B69-4103-BC93-DB70E2BC113A}
+		{28C59814-0FF3-4DAC-B962-C1632D597A9E} = {3176879C-4B69-4103-BC93-DB70E2BC113A}
+		{7E8DE05A-AE21-46DE-846E-F6C1C6249CF2} = {34A0564F-3D9A-409F-965B-776917D2D9AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A530603-B572-4A81-A653-E5B026D87AA8}
