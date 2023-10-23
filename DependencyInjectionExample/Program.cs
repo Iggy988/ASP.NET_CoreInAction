@@ -8,10 +8,15 @@ app.MapGet("/register/{username}", RegisterUser);
 app.Run();
 
 
-string RegisterUser(string username, EmailSender emailSender) 
+string RegisterUser(string username, IEmailSender emailSender) 
 {
   emailSender.SendEmail(username); 
   return $"Email sent to {username}!"; 
+}
+
+public interface IEmailSender
+{
+  public void SendEmail(string username);
 }
 
 public classEmailSender
