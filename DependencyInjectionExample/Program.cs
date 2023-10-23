@@ -8,12 +8,10 @@ app.MapGet("/register/{username}", RegisterUser);
 app.Run();
 
 
-string RegisterUser(string username)
+string RegisterUser(string username, EmailSender emailSender) 
 {
-  var emailSender = new EmailSender(
-    new MessageFactory(), new NetworkClient(new EmailServerSettings(Host: "smtp.server.com",Port: 25 )));
   emailSender.SendEmail(username); 
-  return $"Email sent to {username}!";
+  return $"Email sent to {username}!"; 
 }
 
 public classEmailSender
