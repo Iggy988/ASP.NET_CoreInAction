@@ -1,3 +1,8 @@
+builder.Services.AddScoped( provider => new EmailServerSettings ( 
+  Host: "smtp.server.com", 
+  Port: 25 
+));
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
