@@ -10,6 +10,12 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/register/{username}", RegisterUser);
 
+app.MapGet("/links", (LinkGenerator links) => 
+{
+  string link = links.GetPathByName("products");
+  return $"View the product at {link}";
+});
+
 app.MapRazorPages();
 
 app.Run();
