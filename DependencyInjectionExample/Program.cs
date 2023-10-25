@@ -96,6 +96,8 @@ builder.Services.AddScoped<IMessageSender, EmailSender>();
 builder.Services.TryAddScoped<IMessageSender, SmsSender>();
 builder.Services.AddScoped<IMessageSender, FacebookSender>();
 
+builder.Services.Replace(new ServiceDescriptor(typeof(IMessageSender), typeof(SmsSender), ServiceLifetime.Scoped));
+
 public interface IMessageSender
 {
     public void SendMessage(string message);
