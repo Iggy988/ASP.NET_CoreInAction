@@ -93,7 +93,7 @@ public static class EmailSenderServiceCollectionExtensions
 //drugi projekat
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IMessageSender, EmailSender>();
-builder.Services.AddScoped<IMessageSender, SmsSender>();
+builder.Services.TryAddScoped<IMessageSender, SmsSender>();
 builder.Services.AddScoped<IMessageSender, FacebookSender>();
 
 public interface IMessageSender
