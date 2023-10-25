@@ -90,7 +90,31 @@ public static class EmailSenderServiceCollectionExtensions
     }
 }
 
+//drugi projekat
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IMessageSender, EmailSender>();
+builder.Services.AddScoped<IMessageSender, SmsSender>();
+builder.Services.AddScoped<IMessageSender, FacebookSender>();
+
 public interface IMessageSender
 {
     public void SendMessage(string message);
+}
+
+string RegisterUser(string username,IEnumerable<IMessageSender> senders)
+{
+    foreach(var sender in senders) 
+    { 
+        Sender.SendMessage($”Hello {username}!”); 
+    } 
+    return $"Welcome message sent to {username}";
+}
+
+public class SingleMessageSender
+{
+    private readonly IMessageSender _messageSender;
+    public SingleMessageSender(IMessageSender messageSender)
+    {
+        _messageSender = messageSender;
+    }
 }
