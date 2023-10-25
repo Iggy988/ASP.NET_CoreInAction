@@ -89,3 +89,8 @@ public static class EmailSenderServiceCollectionExtensions
         return services;
     }
 }
+
+public interface IMessageSender
+{
+    public void SendMessage(string message);
+}
