@@ -91,54 +91,69 @@ public static class EmailSenderServiceCollectionExtensions
 }
 
 //drugi projekat
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+var builder = WebApplication.CreateBuilder(args);
+
+
 builder.Services.AddScoped<IMessageSender, EmailSender>();
-builder.Services.TryAddScoped<IMessageSender, SmsSender>();
+builder.Services.AddScoped<IMessageSender, SmsSender>();
 builder.Services.AddScoped<IMessageSender, FacebookSender>();
+builder.Services.TryAddScoped<IMessageSender, UnregisteredSender>();
 
-builder.Services.Replace(new ServiceDescriptor(typeof(IMessageSender), typeof(SmsSender), ServiceLifetime.Scoped));
+var app = builder.Build();
 
-static string RowCounts( DataContext db, Repository repository) 
+app.MapGet("/", () => "Try calling /single-message/{username} or /multi-message/{username} and check the logs");
+app.MapGet("/single-message/{username}", SendSingleMessage);
+app.MapGet("/multi-message/{username}", SendMultiMessage);
+
+app.Run();
+
+string SendSingleMessage(string username, IMessageSender sender)
 {
-    int dbCount = db.RowCount; 
-    int repositoryCount = repository.RowCount; 
-    return: $"DataContext: {dbCount}, Repository: {repositoryCount}"; 
+    sender.SendMessage($"Hello {username}!");
+    return "Check the application logs to see what was called";
 }
 
-public interface IMessageSender
+string SendMultiMessage(string username, IEnumerable<IMessageSender> senders)
 {
-    public void SendMessage(string message);
-}
-
-string RegisterUser(string username,IEnumerable<IMessageSender> senders)
-{
-    foreach(var sender in senders) 
-    { 
-        Sender.SendMessage($”Hello {username}!”); 
-    } 
-    return $"Welcome message sent to {username}";
-}
-
-public class SingleMessageSender
-{
-    private readonly IMessageSender _messageSender;
-    public SingleMessageSender(IMessageSender messageSender)
+    foreach(var sender in senders)
     {
-        _messageSender = messageSender;
+        sender.SendMessage($"Hello {username}!");
+    }
+
+    return "Check the application logs to see what was called";
+}
+
+interface IMessageSender
+{
+    void SendMessage(string message);
+}
+class EmailSender : IMessageSender
+{
+    public void SendMessage(string message)
+    {
+        Console.WriteLine($"Sending Email message: {message}");
     }
 }
-
-class DataContext
+class FacebookSender : IMessageSender
 {
-    public int RowCount { get; } = Random.Shared.Next(1, 1_000_000_000); 
+    public void SendMessage(string message)
+    {
+        Console.WriteLine($"Sending Facebook message: {message}");
+    }
 }
-
-public class Repository
+class SmsSender : IMessageSender
 {
-    private readonly DataContext _dataContext; 
-    public Repository(DataContext dataContext) 
-    { 
-        _dataContext = dataContext; 
-    } 
-    public int RowCount => _dataContext.RowCount; 
+    public void SendMessage(string message)
+    {
+        Console.WriteLine($"Sending SMS: {message}");
+    }
+}
+class UnregisteredSender : IMessageSender
+{
+    public void SendMessage(string message)
+    {
+        throw new Exception("I'm never registered so shouldn't be called");
+    }
 }
