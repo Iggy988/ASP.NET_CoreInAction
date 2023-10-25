@@ -120,3 +120,18 @@ public class SingleMessageSender
         _messageSender = messageSender;
     }
 }
+
+class DataContext
+{
+    public int RowCount { get; } = Random.Shared.Next(1, 1_000_000_000); 
+}
+
+public class Repository
+{
+    private readonly DataContext _dataContext; 
+    public Repository(DataContext dataContext) 
+    { 
+        _dataContext = dataContext; 
+    } 
+    public int RowCount => _dataContext.RowCount; 
+}
