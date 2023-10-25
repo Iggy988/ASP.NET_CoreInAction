@@ -98,6 +98,13 @@ builder.Services.AddScoped<IMessageSender, FacebookSender>();
 
 builder.Services.Replace(new ServiceDescriptor(typeof(IMessageSender), typeof(SmsSender), ServiceLifetime.Scoped));
 
+static string RowCounts( DataContext db, Repository repository) 
+{
+    int dbCount = db.RowCount; 
+    int repositoryCount = repository.RowCount; 
+    return: $"DataContext: {dbCount}, Repository: {repositoryCount}"; 
+}
+
 public interface IMessageSender
 {
     public void SendMessage(string message);
