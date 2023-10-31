@@ -19,11 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InjectingMultipleImplementa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifetimeExample", "LifetimeExample\LifetimeExample.csproj", "{DD1CEE64-1F6D-4C25-B36B-C125055C54AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreViewerApplication", "StoreViewerApplication\StoreViewerApplication.csproj", "{0EE5EBF5-316B-4FD2-809E-1E59AA5544A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreViewerApplication", "StoreViewerApplication\StoreViewerApplication.csproj", "{0EE5EBF5-316B-4FD2-809E-1E59AA5544A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{0EA381AF-00B1-4F13-BA23-CB72725C075B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency Injection", "Dependency Injection", "{AEA521A9-44CF-4976-AA45-5EEEE0793F3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesigningForAutomaticBinding", "DesigningForAutomaticBinding\DesigningForAutomaticBinding.csproj", "{B86A65A6-5DE4-4379-9C4B-3254CFE6F92C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{0EE5EBF5-316B-4FD2-809E-1E59AA5544A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE5EBF5-316B-4FD2-809E-1E59AA5544A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE5EBF5-316B-4FD2-809E-1E59AA5544A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86A65A6-5DE4-4379-9C4B-3254CFE6F92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86A65A6-5DE4-4379-9C4B-3254CFE6F92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86A65A6-5DE4-4379-9C4B-3254CFE6F92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86A65A6-5DE4-4379-9C4B-3254CFE6F92C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{0EE5EBF5-316B-4FD2-809E-1E59AA5544A6} = {0EA381AF-00B1-4F13-BA23-CB72725C075B}
 		{0EA381AF-00B1-4F13-BA23-CB72725C075B} = {34A0564F-3D9A-409F-965B-776917D2D9AA}
 		{AEA521A9-44CF-4976-AA45-5EEEE0793F3C} = {34A0564F-3D9A-409F-965B-776917D2D9AA}
+		{B86A65A6-5DE4-4379-9C4B-3254CFE6F92C} = {0EA381AF-00B1-4F13-BA23-CB72725C075B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A530603-B572-4A81-A653-E5B026D87AA8}
