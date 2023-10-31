@@ -1,7 +1,7 @@
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.Sources.Clear();
-builder.Configuration.AddJsonFile("sharedSsettings.json", optional: true); 
+//builder.Configuration.AddJsonFile("sharedSsettings.json", optional: true); 
 builder.Configuration.AddJsonFile("appsettings.json", optional: true);
 builder.Configuration.AddEnvironmentVariables();
 
