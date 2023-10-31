@@ -37,6 +37,17 @@ app.MapGet("/display-settings-alt", (IConfiguration config) => new
         config["AppDisplaySettings:ShowCopyright"]!),
 });
 
+app.MapGet("/display-settings",
+(IOptionsSnapshot<AppDisplaySettings> options) => 
+{
+  AppDisplaySettings settings = options.Value; 
+  return new
+  {
+    title = settings.Title, 
+    showCopyright = settings.ShowCopyright, 
+  };
+});
+
 app.Run();
 
 class MapSettings
