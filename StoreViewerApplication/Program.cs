@@ -18,6 +18,11 @@ if (builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-app.MapGet("/", () => app.Configuration.AsEnumerable());
+app.MapGet("/display-settings", (IOptions<AppDisplaySettings> options) => 
+{
+  AppDisplaySettings settings = options.Value; 
+  string title = settings.Title; 
+  bool showCopyright = settings.ShowCopyright; 
+});
 
 app.Run();
