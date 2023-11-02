@@ -3,7 +3,13 @@ using System.Collections.Concurrent;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer(); 
-builder.Services.AddSwaggerGen(); 
+builder.Services.AddSwaggerGen(x =>x.SwaggerDoc("v1", new OpenApiInfo()
+{
+  Title = "Fruitify",
+  Description = "An API for interacting with fruit stock",
+  Version = "1.0"
+})); 
+
 WebApplication app = builder.Build();
 
 var _fruit = new ConcurrentDictionary<string, Fruit>();
