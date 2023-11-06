@@ -27,19 +27,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency Injection", "Dep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesigningForAutomaticBinding", "DesigningForAutomaticBinding\DesigningForAutomaticBinding.csproj", "{B86A65A6-5DE4-4379-9C4B-3254CFE6F92C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplacingTheDefaultProviders", "ReplacingTheDefaultProviders\ReplacingTheDefaultProviders.csproj", "{451730C7-F556-4C7D-B24A-5AEC38A70336}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReplacingTheDefaultProviders", "ReplacingTheDefaultProviders\ReplacingTheDefaultProviders.csproj", "{451730C7-F556-4C7D-B24A-5AEC38A70336}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingDifferentEnvironments", "UsingDifferentEnvironments\UsingDifferentEnvironments.csproj", "{974D9025-705D-46CA-AB3D-7779D59A8C25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingDifferentEnvironments", "UsingDifferentEnvironments\UsingDifferentEnvironments.csproj", "{974D9025-705D-46CA-AB3D-7779D59A8C25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documenting APIs with OpenAPI", "Documenting APIs with OpenAPI", "{BB0453BE-51FF-41E8-A859-8F6AA9EEF5EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddingDescriptions", "AddingDescriptions\AddingDescriptions.csproj", "{32C8A25E-CCEC-4923-B2FC-7B9DE117D364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddingDescriptions", "AddingDescriptions\AddingDescriptions.csproj", "{32C8A25E-CCEC-4923-B2FC-7B9DE117D364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomisingGeneration", "CustomisingGeneration\CustomisingGeneration.csproj", "{9C857C51-BE57-4A1E-9272-5DAD406726DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomisingGeneration", "CustomisingGeneration\CustomisingGeneration.csproj", "{9C857C51-BE57-4A1E-9272-5DAD406726DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApiExample", "OpenApiExample\OpenApiExample.csproj", "{E910FFF3-29FA-459C-AD0F-492CB4B72BD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenApiExample", "OpenApiExample\OpenApiExample.csproj", "{E910FFF3-29FA-459C-AD0F-492CB4B72BD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApiExample_NSwag", "OpenApiExample_NSwag\OpenApiExample_NSwag.csproj", "{64A45E14-A754-4848-A12C-16199E6E3286}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenApiExample_NSwag", "OpenApiExample_NSwag\OpenApiExample_NSwag.csproj", "{64A45E14-A754-4848-A12C-16199E6E3286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{818D44A7-FCC1-4476-BE65-5A37363C710D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +105,10 @@ Global
 		{64A45E14-A754-4848-A12C-16199E6E3286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64A45E14-A754-4848-A12C-16199E6E3286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64A45E14-A754-4848-A12C-16199E6E3286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{818D44A7-FCC1-4476-BE65-5A37363C710D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818D44A7-FCC1-4476-BE65-5A37363C710D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818D44A7-FCC1-4476-BE65-5A37363C710D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818D44A7-FCC1-4476-BE65-5A37363C710D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{9C857C51-BE57-4A1E-9272-5DAD406726DB} = {BB0453BE-51FF-41E8-A859-8F6AA9EEF5EA}
 		{E910FFF3-29FA-459C-AD0F-492CB4B72BD9} = {BB0453BE-51FF-41E8-A859-8F6AA9EEF5EA}
 		{64A45E14-A754-4848-A12C-16199E6E3286} = {BB0453BE-51FF-41E8-A859-8F6AA9EEF5EA}
+		{818D44A7-FCC1-4476-BE65-5A37363C710D} = {BB0453BE-51FF-41E8-A859-8F6AA9EEF5EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A530603-B572-4A81-A653-E5B026D87AA8}
