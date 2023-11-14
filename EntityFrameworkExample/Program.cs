@@ -7,7 +7,7 @@ var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
-    opt.UseSqlServer();
+    opt.UseSqlServer(connString);
 });
 
 var app = builder.Build();
